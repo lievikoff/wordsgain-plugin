@@ -1,0 +1,97 @@
+body button.wordsgain-playground {
+	&__button {
+		display: flex;
+		justify-content: center;
+		margin: .5em 0;
+		color: $color-white;
+		border: 1px solid $color-white;
+		transition: background-color .4s ease-in;
+		outline: none;
+		padding: 1.1em 1.44em;
+
+		// Colors.
+		&--blue {
+			background-color: $color-blue;
+		}
+
+		&--green {
+			background-color: $color-green;
+		}
+
+		&--red {
+			background-color: $color-red;
+		}
+
+		&--gray {
+			background-color: $color-gray;
+		}
+
+		&--dark {
+			background-color: $color-dark;
+		}
+
+		&--dark-gray {
+			background-color: $color-dark-gray;
+		}
+
+		&:hover, &:focus, &:active {
+			text-decoration: none;
+		}
+
+		&:disabled {
+			cursor: default;
+		}
+
+		// Widths.
+		&--narrow {
+			width: 25%;
+		}
+
+		&--half {
+			width: 50%;
+		}
+
+		&--wide {
+			width: 100%;
+		}
+
+		@media only screen and (min-width: 1200px) {
+			// Colors Hover.
+			&--blue:hover {
+				background-color: darken( $color-blue, 10% );
+			}
+
+			&--green:hover {
+				background-color: darken( $color-green, 10% );
+
+				&:disabled {
+					background-color: $color-green;
+				}
+			}
+
+			&--red:hover {
+				background-color: darken( $color-red, 10% );
+
+				&:disabled {
+					background-color: $color-red;
+				}
+			}
+
+			&--gray:hover {
+				background-color: darken( $color-gray, 10% );
+
+				&:disabled {
+					background-color: $color-gray;
+				}
+			}
+
+			&--dark:hover {
+				background-color: lighten( $color-dark, 10% );
+			}
+
+			&--dark-gray:hover {
+				background-color: darken( $color-dark-gray, 10% );
+			}
+		}
+	}
+}

@@ -1,0 +1,27 @@
+.wordsgain-playground {
+	&__title {
+		text-align: center;
+	}
+
+	&__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	&__buttons + &__buttons {
+		margin-top: .5em;
+	}
+
+	&__label {
+		display: flex;
+		justify-content: center;
+
+		span {
+			padding: 0 10px;
+			background-color: $color-white;
+			font-style: italic;
+		}
+	}
+}
+
