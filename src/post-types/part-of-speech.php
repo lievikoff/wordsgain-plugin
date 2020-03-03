@@ -27,13 +27,14 @@ function register_all_parts_of_speech_post_types() {
 }
 add_action( 'init', __NAMESPACE__ . '\register_all_parts_of_speech_post_types' );
 
-function word_exists( $post_id, $post_name ) {
+function word_exists( $post_id, $post_name, $post_type ) {
 	global $wpdb;
 
 	$query = $wpdb->prepare(
-		"SELECT ID FROM $wpdb->posts WHERE post_name = %s AND ID != %d LIMIT 1",
+		"SELECT ID FROM $wpdb->posts WHERE ID != %d AND post_name = %s AND post_type = %s LIMIT 1",
+		$post_id,
 		$post_name,
-		$post_id
+		$post_type
 	);
 
 	return $wpdb->get_var( $query );
@@ -54,13 +55,13 @@ function delete_word_exists_notice() {
 function prevent_word_duplicates( $post_id, $post ) {
 	if ( 'publish' === $post->post_status && in_array( $post->post_type, get_parts_of_speech( 'keys' ) ) ) {
 		$sanitized_title = sanitize_title( $post->post_title );
-		$word_exists = word_exists( $post_id, $sanitized_title );
+		$word_exists = word_exists( $post_id, $sanitized_title, $post->post_type );
 
 		if ( $word_exists ) {
-			$taxonomy = 'ru-' . $post->post_type;
-			$post_terms = wp_get_post_terms( $post_id, $taxonomy, array( 'fields' => 'names' ) );
+			// $taxonomy = 'ru-' . $post->post_type;
+			// $post_terms = wp_get_post_terms( $post_id, $taxonomy, array( 'fields' => 'names' ) );
 
-			wp_set_post_terms( $word_exists, $post_terms, $taxonomy );
+			// wp_set_post_terms( $word_exists, $post_terms, $taxonomy );
 			wp_delete_post( $post_id );
 
 			set_word_exists_notice();

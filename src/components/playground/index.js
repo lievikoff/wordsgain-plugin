@@ -34,7 +34,7 @@ class Playground extends Component {
 	handleWelcomeButtonClick( data ) {
 		const callback = 'free' === data.mode ? this.setTestingScreen : this.setLearningScreen;
 
-		this.setData( data.numberOfWords, callback, data.mode );
+		this.setData( data, callback );
 	}
 
 	setWelcomeScreen() {
@@ -44,12 +44,15 @@ class Playground extends Component {
 		} );
 	}
 
-	setData( numberOfWords, callback, mode ) {
+	setData( data, callback) {
 		this.setState( {
 			isLoading: true,
 		} );
+		console.log(data)
 
-		apiFetch( { path: '/wordsgain/v1/playground/words/' + numberOfWords } ).then( words => {
+		apiFetch( {
+			path: `/wordsgain/v1/playground/words/${data.language}/${data.numberOfWords}`
+		} ).then( words => {
 			this.setState( {
 				words: words,
 				numberOfWords: words.legnth,

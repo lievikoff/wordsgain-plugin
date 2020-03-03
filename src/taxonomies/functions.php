@@ -3,10 +3,14 @@
 namespace WordsGain\Taxonomies;
 
 function get_translation_languages( $type = '', $exclude = '' ) {
+	if ( $exclude ) {
+		$exclude = strtolower( $exclude );
+	}
+
 	$languages = array(
-		'ru_RU' => __( 'Russian', 'wordsgain' ),
-		'en_US' => __( 'English', 'wordsgain' ),
-		'da_DK' => __( 'Danish', 'wordsgain' ),
+		'ru_ru' => __( 'Russian', 'wordsgain' ),
+		'en_us' => __( 'English', 'wordsgain' ),
+		'da_dk' => __( 'Danish', 'wordsgain' ),
 		// 'pl_PL' => __( 'Polish', 'wordsgain' ),
 		// 'es_ES' => __( 'Spanish', 'wordsgain' ),
 	);

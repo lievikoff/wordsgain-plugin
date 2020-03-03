@@ -13,7 +13,6 @@ class Welcome extends Component {
 		this.state = {
 			title: '',
 			content: '',
-			selectedLanguage: '',
 			isLoading: true,
 		};
 
@@ -37,8 +36,7 @@ class Welcome extends Component {
 	handleLanguageSelectChange( selectedOption ) {
 		this.setState( {
 			title: __( 'Chose Number of Words', 'wordsgain' ),
-			content: this.getNumberOfWords(),
-			selectedLanguage: selectedOption
+			content: this.getNumberOfWords( selectedOption.value ),
 		} );
 	}
 
@@ -46,19 +44,20 @@ class Welcome extends Component {
 		return <Select onChange={ this.handleLanguageSelectChange } options={ languages } />;
 	}
 
-	getNumberOfWords() {
+	getNumberOfWords( language ) {
+		console.log(language)
 		return [
 			<div className={ getElementClassName( 'wordsgain-playground', 'buttons' ) }>
-				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 10, language: this.state.selectedLanguage } } color="blue" width='half'>{ __( '10 Words', 'wordsgain' ) }</Button>
-				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 20, language: this.state.selectedLanguage } } color="blue" width='half'>{ __( '20 Words', 'wordsgain' ) }</Button>
-				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 30, language: this.state.selectedLanguage } } color="blue" width='half'>{ __( '30 Words', 'wordsgain' ) }</Button>
-				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 40, language: this.state.selectedLanguage } } color="blue" width='half'>{ __( '40 Words', 'wordsgain' ) }</Button>
-				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 50, language: this.state.selectedLanguage } } color="blue" width='half'>{ __( '50 Words', 'wordsgain' ) }</Button>
-				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 75, language: this.state.selectedLanguage } } color="blue" width='half'>{ __( '75 Words', 'wordsgain' ) }</Button>
+				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 10, language: language } } color="blue" width='half'>{ __( '10 Words', 'wordsgain' ) }</Button>
+				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 20, language: language } } color="blue" width='half'>{ __( '20 Words', 'wordsgain' ) }</Button>
+				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 30, language: language } } color="blue" width='half'>{ __( '30 Words', 'wordsgain' ) }</Button>
+				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 40, language: language } } color="blue" width='half'>{ __( '40 Words', 'wordsgain' ) }</Button>
+				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 50, language: language } } color="blue" width='half'>{ __( '50 Words', 'wordsgain' ) }</Button>
+				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 75, language: language } } color="blue" width='half'>{ __( '75 Words', 'wordsgain' ) }</Button>
 			</div>,
 			<div className={ getElementClassName( 'wordsgain-playground', 'buttons' ) }>
-				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 100, language: this.state.selectedLanguage } } color="blue" width='wide'>{ __( '100 Words', 'wordsgain' ) }</Button>
-				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'free', numberOfWords: getFreeModeNumberOfWords(), language: this.state.selectedLanguage } } color="dark-gray" width='wide'>{ __( 'Freemode', 'wordsgain' ) }</Button>
+				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 100, language: language } } color="blue" width='wide'>{ __( '100 Words', 'wordsgain' ) }</Button>
+				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'free', numberOfWords: getFreeModeNumberOfWords(), language: language } } color="dark-gray" width='wide'>{ __( 'Freemode', 'wordsgain' ) }</Button>
 			</div>
 		];
 	}
