@@ -8,7 +8,7 @@ use function WordsGain\Taxonomies\get_translation_languages;
 defined( 'ABSPATH' ) || exit;
 
 function get_rest_playground_words_route( $data ) {
-	if ( ! preg_match( '#^[a-z]{2}(?:_[A-Z]{2})?$#', $data['language'] ) || ! in_array( $data['language'], get_translation_languages( 'keys' ) ) ) {
+	if ( ! preg_match( '#^[a-z]{2}(?:_[a-z]{2})?$#', $data['language'] ) || ! in_array( $data['language'], get_translation_languages( 'keys' ) ) ) {
 		return;
 	}
 
