@@ -5,7 +5,8 @@ import Welcome from '../welcome';
 import Learning from '../learning';
 import Testing from '../testing';
 import Result from '../result';
-import { shuffle, getFreeModeNumberOfWords, getLoader } from '../../blocks/helpers';
+import Loader from '../loader';
+import { shuffle, getFreeModeNumberOfWords } from '../../blocks/helpers';
 
 class Playground extends Component {
 	constructor( props ) {
@@ -48,7 +49,7 @@ class Playground extends Component {
 			isLoading: true,
 		} );
 
-		apiFetch( { path: '/wordsgain/v1/playground/' + numberOfWords } ).then( words => {
+		apiFetch( { path: '/wordsgain/v1/playground/words/' + numberOfWords } ).then( words => {
 			this.setState( {
 				words: words,
 				numberOfWords: words.legnth,
@@ -98,7 +99,7 @@ class Playground extends Component {
 
 	render() {
 		if ( this.state.isLoading ) {
-			return getLoader();
+			return <Loader />
 		}
 
 		return (

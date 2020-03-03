@@ -2,9 +2,8 @@ body button.wordsgain-playground {
 	&__button {
 		display: flex;
 		justify-content: center;
-		margin: .5em 0;
+		margin: .4em 0;
 		color: $color-white;
-		border: 1px solid $color-white;
 		transition: background-color .4s ease-in;
 		outline: none;
 		padding: 1.1em 1.44em;
@@ -44,11 +43,11 @@ body button.wordsgain-playground {
 
 		// Widths.
 		&--narrow {
-			width: 24%;
+			width: 24.5%;
 		}
 
 		&--half {
-			width: 49%;
+			width: 49.5%;
 		}
 
 		&--wide {

@@ -3,7 +3,7 @@
 namespace WordsGain\Post_Types;
 
 function register_all_parts_of_speech_post_types() {
-	$parts_of_speech = get_parts_of_speech_list();
+	$parts_of_speech = get_parts_of_speech();
 
 	foreach ( $parts_of_speech as $part_of_speech_key => $part_of_speech_labels ) {
 		register_post_type(
@@ -52,7 +52,7 @@ function delete_word_exists_notice() {
 }
 
 function prevent_word_duplicates( $post_id, $post ) {
-	if ( 'publish' === $post->post_status && in_array( $post->post_type, get_parts_of_speech_list( 'keys' ) ) ) {
+	if ( 'publish' === $post->post_status && in_array( $post->post_type, get_parts_of_speech( 'keys' ) ) ) {
 		$sanitized_title = sanitize_title( $post->post_title );
 		$word_exists = word_exists( $post_id, $sanitized_title );
 
@@ -61,7 +61,7 @@ function prevent_word_duplicates( $post_id, $post ) {
 			$post_terms = wp_get_post_terms( $post_id, $taxonomy, array( 'fields' => 'names' ) );
 
 			wp_set_post_terms( $word_exists, $post_terms, $taxonomy );
-			// wp_delete_post( $post_id );
+			wp_delete_post( $post_id );
 
 			set_word_exists_notice();
 

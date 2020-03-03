@@ -2,7 +2,7 @@
 
 namespace WordsGain\Post_Types;
 
-function get_parts_of_speech_list( $type = '' ) {
+function get_parts_of_speech( $type = '' ) {
 	$parts_of_speech = array(
 		'noun' => array(
 			'name'                  => _x( 'Nouns', 'Post type general name', 'wordsgain' ),
@@ -166,7 +166,7 @@ function get_parts_of_speech_list( $type = '' ) {
 }
 
 function get_random_part_of_speech() {
-	$parts_of_speech = get_parts_of_speech_list( 'keys' );
+	$parts_of_speech = get_parts_of_speech( 'keys' );
 	$rand_key        = array_rand( $parts_of_speech );
 
 	return $parts_of_speech[ $rand_key ];
@@ -174,7 +174,7 @@ function get_random_part_of_speech() {
 
 function get_menu_position( $type ) {
 	$positions        = array();
-	$parts_of_speech  = get_parts_of_speech_list( 'keys' );
+	$parts_of_speech  = get_parts_of_speech( 'keys' );
 	$initial_position = 30;
 
 	foreach ( $parts_of_speech as $part_of_speech ) {

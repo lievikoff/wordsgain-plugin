@@ -23,7 +23,3 @@ export function shuffle( arr ) {
 export function getFreeModeNumberOfWords() {
 	return 50;
 }
-
-export function getLoader() {
-	return <div class="loader">{ __( 'Loading...', 'wordsgain' ) }</div>
-}

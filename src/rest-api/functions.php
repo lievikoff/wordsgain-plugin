@@ -2,7 +2,8 @@
 
 namespace WordsGain\Rest_API;
 
-use function WordsGain\Post_Types\get_parts_of_speech_list;
+use function WordsGain\Post_Types\get_parts_of_speech;
+use function WordsGain\Taxonomies\get_translation_languages;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -44,9 +45,8 @@ function get_random_terms( $taxonomy, $exclude, $limit ) {
 
 }
 
-function get_playground_words( $number_of_posts ) {
-	$language = 'ru';
-	$post_types = get_parts_of_speech_list( 'keys' );
+function get_playground_words( $number_of_posts, $language ) {
+	$post_types = get_parts_of_speech( 'keys' );
 
 	$posts = get_posts( array(
 		'post_type'   => $post_types,
@@ -66,6 +66,10 @@ function get_playground_words( $number_of_posts ) {
 				'fields' => 'ids'
 			)
 		);
+
+		if ( ! $post_terms || is_wp_error( $post_terms ) ) {
+			return;
+		}
 
 		$random_term_index = array_rand( $post_terms );
 		$right_term        = get_term( $post_terms[ $random_term_index ] );
@@ -91,4 +95,18 @@ function get_playground_words( $number_of_posts ) {
 	}
 
 	return array_values( $words );
+}
+
+function get_playground_languages() {
+	$translation_languages = get_translation_languages( 'all', get_locale() );
+	$playground_languages = array();
+
+	foreach ( $translation_languages as $language_key => $language_label  ) {
+		$playground_languages[] = array(
+			'value' => $language_key,
+			'label' => $language_label
+		);
+	}
+
+	return $playground_languages;
 }
