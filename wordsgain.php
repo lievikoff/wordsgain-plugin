@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WordsGain
  * Plugin URI: https://wordsgain.com/
- * Description: Make Your Vocabulary Great Again!
+ * Description: Easy Way to Lern New Words
  * Version: 1.0.0
  * Author: the WordsGain team
  * Author URI: http://wordsgain.com/

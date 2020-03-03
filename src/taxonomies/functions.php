@@ -4,7 +4,11 @@ namespace WordsGain\Taxonomies;
 
 function get_translation_languages_list( $type = '' ) {
 	$languages = array(
-		'ru' => __( 'Russian Translate', 'wordsgain' ),
+		'ru_RU' => __( 'Russian', 'wordsgain' ),
+		'en_US' => __( 'English', 'wordsgain' ),
+		'da_DK' => __( 'Danish', 'wordsgain' ),
+		'pl_PL' => __( 'Polish', 'wordsgain' ),
+		'es_ES' => __( 'Spanish', 'wordsgain' ),
 	);
 
 	if ( 'keys' === $type ) {
