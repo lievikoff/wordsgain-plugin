@@ -45,7 +45,6 @@ class Welcome extends Component {
 	}
 
 	getNumberOfWords( language ) {
-		console.log(language)
 		return [
 			<div className={ getElementClassName( 'wordsgain-playground', 'buttons' ) }>
 				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 10, language: language } } color="blue" width='half'>{ __( '10 Words', 'wordsgain' ) }</Button>

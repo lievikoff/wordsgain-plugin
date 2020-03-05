@@ -48,7 +48,6 @@ class Playground extends Component {
 		this.setState( {
 			isLoading: true,
 		} );
-		console.log(data)
 
 		apiFetch( {
 			path: `/wordsgain/v1/playground/words/${data.language}/${data.numberOfWords}`
@@ -56,7 +55,7 @@ class Playground extends Component {
 			this.setState( {
 				words: words,
 				numberOfWords: words.legnth,
-				mode: mode,
+				mode: data.mode,
 				isLoading: false,
 			} );
 

@@ -68,7 +68,7 @@ function get_playground_words( $number_of_posts, $language ) {
 		);
 
 		if ( ! $post_terms || is_wp_error( $post_terms ) ) {
-			return;
+			continue;
 		}
 
 		$random_term_index = array_rand( $post_terms );
