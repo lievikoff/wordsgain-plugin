@@ -6,7 +6,7 @@ registerBlockType( 'wordsgain/playground', {
 	title: __( 'WordsGain Playground', 'wordsgain' ),
 	icon: 'welcome-learn-more',
 	category: 'widgets',
-	edit( props ) {
+	edit() {
 		return (
 			<Playground />
 		);

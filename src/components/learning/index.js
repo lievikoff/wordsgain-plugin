@@ -1,6 +1,6 @@
 import { Component } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { getElementClassName } from '../../blocks/helpers';
+import { getElementClassName, capitalizeFirstLetter } from '../../blocks/helpers';
 import LearningNavigation from '../learning-navigation';
 
 class Learning extends Component {
@@ -30,19 +30,27 @@ class Learning extends Component {
 	}
 
 	render() {
+		console.log(this.props.data)
+		const currentData = this.props.data[ this.state.currentStep - 1 ];
+		const currentWord = currentData.words[ currentData.selected ];
+
 		return (
 			<div className={ this.getBlockClassName() }>
 				<div className={ getElementClassName( 'wordsgain-playground', 'label' ) }>
-					<span>{this.props.words[ this.state.currentStep - 1 ].post.post_type }</span>
+					<span>{ currentWord.post_type }</span>
 				</div>
-				<h2 className={ getElementClassName( 'wordsgain-playground', 'title' ) }>{ this.props.words[ this.state.currentStep - 1 ].post.post_title }</h2>
+				<h2 className={ getElementClassName( 'wordsgain-playground', 'title' ) }>
+					{ capitalizeFirstLetter( currentWord.term_name ) }
+				</h2>
 				<hr />
-				<h3 className={ getElementClassName( 'wordsgain-playground', 'title' ) }>{ this.props.words[ this.state.currentStep - 1 ].right_term.name }</h3>
+				<h3 className={ getElementClassName( 'wordsgain-playground', 'title' ) }>
+					{ capitalizeFirstLetter( currentWord.post_title ) }
+				</h3>
 
 				<LearningNavigation
 					handleButtonClick={ this.handleButtonClick }
 					currentStep={ this.state.currentStep }
-					numberOfSteps={ this.props.words.length }
+					numberOfSteps={ this.props.data.length }
 				/>
 			</div>
 		);

@@ -10,7 +10,7 @@ class Testing extends Component {
 
 		this.state = {
 			currentWordIndex: 0,
-			chosenTermId: 0,
+			chosenWordId: 0,
 			passedWordsCount: 0,
 			rightAnswersCount: 0,
 			showControlButtons: false,
@@ -49,13 +49,13 @@ class Testing extends Component {
 	}
 
 	isLastWord() {
-		return this.state.currentWordIndex === this.props.words.length - 1;
+		return this.state.currentWordIndex === this.props.data.length - 1;
 	}
 
 	finish() {
 		if ( 'free' === this.props.mode ) {
 			this.setState( {
-				chosenTermId: 0,
+				chosenWordId: 0,
 				currentWordIndex: 0,
 			} );
 
@@ -67,18 +67,20 @@ class Testing extends Component {
 
 	handleAnswerClick( data ) {
 		const state = {};
+		const currentData  = this.props.data[ this.state.currentWordIndex ];
+		const selectedWord = currentData.words[ currentData.selected ];
 
 		state.passedWordsCount = this.state.passedWordsCount + 1;
-		state.chosenTermId = data.term_id;
+		state.chosenWordId = data.post_id;
 
-		if ( this.props.words[ this.state.currentWordIndex ].right_term.term_id === data.term_id ) {
+		if ( selectedWord.post_id === data.post_id ) {
 			state.rightAnswersCount = this.state.rightAnswersCount + 1;
 
 			if ( this.isLastWord() ) {
 				setTimeout( () => this.finish(), 1000 );
 			} else {
 				setTimeout( () => this.setState( {
-					chosenTermId: 0,
+					chosenWordId: 0,
 					currentWordIndex: this.state.currentWordIndex + 1,
 				} ), 1000 );
 			}
@@ -99,37 +101,41 @@ class Testing extends Component {
 		}
 
 		this.setState( {
-			chosenTermId: 0,
+			chosenWordId: 0,
 			showControlButtons: false,
 			currentWordIndex: this.state.currentWordIndex + 1,
 		} );
 	}
 
 	render() {
+		const currentData  = this.props.data[ this.state.currentWordIndex ];
+		const selectedWord = currentData.words[ currentData.selected ];
+
+		console.log(currentData)
 		return (
 			<div className={ this.getBlockClassName() }>
 				<div className={ getElementClassName( 'wordsgain-playground', 'label' ) }>
-					<span>{this.props.words[ this.state.currentWordIndex ].post.post_type }</span>
+					<span>{ selectedWord.post_type }</span>
 				</div>
 
 				<h2 className={ getElementClassName( 'wordsgain-playground', 'title' ) }>
-					{ this.props.words[ this.state.currentWordIndex ].post.post_title }
+					{ selectedWord.term_name }
 				</h2>
 
 				<div className={ getElementClassName( this.getBlockClassName(), 'answers' ) }>
-					{ this.props.words[ this.state.currentWordIndex ].terms.map( term => {
+					{ currentData.words.map( word => {
 						let color = 'blue';
 						let handleClickFunction = this.handleAnswerClick;
 						let isDisabled = false;
 
-						if ( this.state.chosenTermId ) {
+						if ( this.state.chosenWordId ) {
 							handleClickFunction = () => {};
 							isDisabled = true;
 
-							if ( term.term_id !== this.props.words[ this.state.currentWordIndex ].right_term.term_id ) {
+							if ( word.post_id !== selectedWord.post_id ) {
 								color = 'gray';
 
-								if ( term.term_id === this.state.chosenTermId ) {
+								if ( word.post_id === this.state.chosenWordId ) {
 									color = 'red';
 								}
 							} else {
@@ -138,14 +144,14 @@ class Testing extends Component {
 						}
 
 						return <Button
-							key={ term.term_id }
+							key={ word.post_id }
 							handleButtonClick={ handleClickFunction }
-							data={ { term_id: term.term_id } }
+							data={ { post_id: word.post_id } }
 							color={ color }
 							width="wide"
 							isDisabled={ isDisabled }
 						>
-							{ term.name }
+							{ word.post_title }
 						</Button>
 					} ) }
 				</div>

@@ -2,6 +2,7 @@
 
 namespace WordsGain\Rest_API;
 
+use WP_Error;
 use WP_REST_Response;
 use function WordsGain\Taxonomies\get_translation_languages;
 
@@ -12,10 +13,22 @@ function get_rest_playground_words_route( $data ) {
 		return;
 	}
 
-	$response = new WP_REST_Response(
-		get_playground_words( $data['numberwords'], $data['language'] )
-	);
-    $response->set_status( 200 );
+	$words = get_playground_words( $data['numberwords'], $data['language'] );
+
+	if ( empty( $words ) ) {
+		return new WP_Error(
+			'wg_no_words_found',
+			__( 'There are no words found.', 'wordsgain'  ),
+			array(
+				'status' => 404
+		) );
+	}
+
+	$response = new WP_REST_Response( array(
+		'data'    => $words,
+		'success' => true,
+	) );
+	$response->set_status( 200 );
 
     return $response;
 }

@@ -2,10 +2,10 @@
 /**
  * Plugin Name: WordsGain
  * Plugin URI: https://wordsgain.com/
- * Description: Easy Way to Lern New Words
+ * Description: Easy way to learn new words
  * Version: 1.0.0
  * Author: the WordsGain team
- * Author URI: http://wordsgain.com/
+ * Author URI: https://wordsgain.com/
  */
 
 defined( 'ABSPATH' ) || exit;

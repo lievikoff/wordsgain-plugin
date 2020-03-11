@@ -4,7 +4,12 @@ import apiFetch from '@wordpress/api-fetch';
 import Select from 'react-select';
 import Button from '../button';
 import Loader from '../loader';
-import { getElementClassName, getFreeModeNumberOfWords } from '../../blocks/helpers';
+import {
+	getElementClassName,
+	getFreeModeNumberOfWords,
+	getSelectCustomTheme,
+	getSelectCustomStyles
+} from '../../blocks/helpers';
 
 class Welcome extends Component {
 	constructor( props ) {
@@ -41,7 +46,7 @@ class Welcome extends Component {
 	}
 
 	getLanguageSelect( languages ) {
-		return <Select onChange={ this.handleLanguageSelectChange } options={ languages } />;
+		return <Select onChange={ this.handleLanguageSelectChange } options={ languages } theme={ getSelectCustomTheme } styles={ getSelectCustomStyles } />;
 	}
 
 	getNumberOfWords( language ) {

@@ -29,6 +29,14 @@ class Playground extends Component {
 
 	componentDidMount() {
 		this.setWelcomeScreen();
+		// this.setData(
+		// 	{
+		// 		mode: 'predefined',
+		// 		numberOfWords: 3,
+		// 		language: 'ru_ru',
+		// 	},
+		// 	this.setTestingScreen
+		// );
 	}
 
 	handleWelcomeButtonClick( data ) {
@@ -51,13 +59,15 @@ class Playground extends Component {
 
 		apiFetch( {
 			path: `/wordsgain/v1/playground/words/${data.language}/${data.numberOfWords}`
-		} ).then( words => {
-			this.setState( {
-				words: words,
-				numberOfWords: words.legnth,
-				mode: data.mode,
-				isLoading: false,
-			} );
+		} ).then( response => {
+			if ( response.success ) {
+				this.setState( {
+					data: response.data,
+					numberOfWords: data.numberOfWords,
+					mode: data.mode,
+					isLoading: false,
+				} );
+			}
 
 			callback();
 		} );
@@ -67,10 +77,9 @@ class Playground extends Component {
 		this.setState( {
 			screen: <Learning
 				begin={ this.setTestingScreen }
-				words={ this.state.words }
+				data={ this.state.data }
 			/>,
 			endCallback: this.setResultScreen,
-			words: shuffle( this.state.words )
 		} );
 	}
 
@@ -84,7 +93,7 @@ class Playground extends Component {
 				handleResult={ this.setResultScreen }
 				handleReload={ this.reloadTestingScreen }
 				mode={ this.state.mode }
-				words={ this.state.words }
+				data={ this.state.data }
 			/>
 		} );
 	}
