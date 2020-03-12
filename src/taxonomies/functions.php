@@ -10,7 +10,7 @@ function get_translation_languages( $type = '', $exclude = '' ) {
 	$languages = array(
 		'ru_ru' => __( 'Russian', 'wordsgain' ),
 		'en_us' => __( 'English', 'wordsgain' ),
-		'da_dk' => __( 'Danish', 'wordsgain' ),
+		// 'da_dk' => __( 'Danish', 'wordsgain' ),
 		// 'pl_PL' => __( 'Polish', 'wordsgain' ),
 		// 'es_ES' => __( 'Spanish', 'wordsgain' ),
 	);

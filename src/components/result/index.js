@@ -11,7 +11,7 @@ function Result( props ) {
 
 	return (
 		<div className={ getBlockClassName() }>
-			<h2 className={ getElementClassName( 'wordsgain-playground', 'title' ) }>{ __( 'Your Result' ) }</h2>
+			<h2 className={ getElementClassName( 'wordsgain-playground', 'title' ) }>{ __( 'Your Result', 'wordsgain' ) }</h2>
 			<hr />
 			<h3 className={ getElementClassName( 'wordsgain-playground', 'title' ) }> { props.rightAnswersCount } / { props.passedWordsCount }</h3>
 

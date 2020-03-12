@@ -1,0 +1,367 @@
+# Copyright (C) 2020 the WordsGain team
+# This file is distributed under the same license as the WordsGain plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: WordsGain 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wordsgain\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-03-12T21:35:40+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: wordsgain\n"
+
+#. Plugin Name of the plugin
+msgid "WordsGain"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://wordsgain.com/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Easy way to learn foreign words"
+msgstr ""
+
+#. Author of the plugin
+msgid "the WordsGain team"
+msgstr ""
+
+#: src/post-types/functions.php:8
+msgctxt "Post type general name"
+msgid "Nouns"
+msgstr ""
+
+#: src/post-types/functions.php:9
+msgctxt "Post type singular name"
+msgid "Noun"
+msgstr ""
+
+#: src/post-types/functions.php:10
+msgctxt "Admin Menu text"
+msgid "Nouns"
+msgstr ""
+
+#: src/post-types/functions.php:11
+msgctxt "Add New on Toolbar"
+msgid "Noun"
+msgstr ""
+
+#: src/post-types/functions.php:12
+#: src/post-types/functions.php:30
+#: src/post-types/functions.php:48
+#: src/post-types/functions.php:66
+msgid "Add New"
+msgstr ""
+
+#: src/post-types/functions.php:13
+msgid "Add New Noun"
+msgstr ""
+
+#: src/post-types/functions.php:14
+msgid "New Noun"
+msgstr ""
+
+#: src/post-types/functions.php:15
+msgid "Edit Noun"
+msgstr ""
+
+#: src/post-types/functions.php:16
+msgid "View Noun"
+msgstr ""
+
+#: src/post-types/functions.php:17
+msgid "All Nouns"
+msgstr ""
+
+#: src/post-types/functions.php:18
+msgid "Search Nouns"
+msgstr ""
+
+#: src/post-types/functions.php:19
+msgid "No nouns found."
+msgstr ""
+
+#: src/post-types/functions.php:20
+msgid "No nouns found in Trash."
+msgstr ""
+
+#: src/post-types/functions.php:21
+msgctxt "Screen reader text for the filter links heading on the post type listing screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4"
+msgid "Filter nouns list"
+msgstr ""
+
+#: src/post-types/functions.php:22
+msgctxt "Screen reader text for the pagination heading on the post type listing screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4"
+msgid "Nouns list navigation"
+msgstr ""
+
+#: src/post-types/functions.php:23
+msgctxt "Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4"
+msgid "Nouns list"
+msgstr ""
+
+#: src/post-types/functions.php:26
+msgctxt "Post type general name"
+msgid "Adjectives"
+msgstr ""
+
+#: src/post-types/functions.php:27
+msgctxt "Post type singular name"
+msgid "Adjective"
+msgstr ""
+
+#: src/post-types/functions.php:28
+msgctxt "Admin Menu text"
+msgid "Adjectives"
+msgstr ""
+
+#: src/post-types/functions.php:29
+msgctxt "Add New on Toolbar"
+msgid "Adjective"
+msgstr ""
+
+#: src/post-types/functions.php:31
+msgid "Add New Adjective"
+msgstr ""
+
+#: src/post-types/functions.php:32
+msgid "New Adjective"
+msgstr ""
+
+#: src/post-types/functions.php:33
+msgid "Edit Adjective"
+msgstr ""
+
+#: src/post-types/functions.php:34
+msgid "View Adjective"
+msgstr ""
+
+#: src/post-types/functions.php:35
+msgid "All Adjectives"
+msgstr ""
+
+#: src/post-types/functions.php:36
+msgid "Search Adjectives"
+msgstr ""
+
+#: src/post-types/functions.php:37
+msgid "No adjectives found."
+msgstr ""
+
+#: src/post-types/functions.php:38
+msgid "No adjectives found in Trash."
+msgstr ""
+
+#: src/post-types/functions.php:39
+msgctxt "Screen reader text for the filter links heading on the post type listing screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4"
+msgid "Filter adjectives list"
+msgstr ""
+
+#: src/post-types/functions.php:40
+msgctxt "Screen reader text for the pagination heading on the post type listing screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4"
+msgid "Adjectives list navigation"
+msgstr ""
+
+#: src/post-types/functions.php:41
+msgctxt "Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4"
+msgid "Adjectives list"
+msgstr ""
+
+#: src/post-types/functions.php:44
+msgctxt "Post type general name"
+msgid "Verbs"
+msgstr ""
+
+#: src/post-types/functions.php:45
+msgctxt "Post type singular name"
+msgid "Verb"
+msgstr ""
+
+#: src/post-types/functions.php:46
+msgctxt "Admin Menu text"
+msgid "Verbs"
+msgstr ""
+
+#: src/post-types/functions.php:47
+msgctxt "Add New on Toolbar"
+msgid "Verb"
+msgstr ""
+
+#: src/post-types/functions.php:49
+msgid "Add New Verb"
+msgstr ""
+
+#: src/post-types/functions.php:50
+msgid "New Verb"
+msgstr ""
+
+#: src/post-types/functions.php:51
+msgid "Edit Verb"
+msgstr ""
+
+#: src/post-types/functions.php:52
+msgid "View Verb"
+msgstr ""
+
+#: src/post-types/functions.php:53
+msgid "All Verbs"
+msgstr ""
+
+#: src/post-types/functions.php:54
+msgid "Search Verbs"
+msgstr ""
+
+#: src/post-types/functions.php:55
+msgid "No verbs found."
+msgstr ""
+
+#: src/post-types/functions.php:56
+msgid "No verbs found in Trash."
+msgstr ""
+
+#: src/post-types/functions.php:57
+msgctxt "Screen reader text for the filter links heading on the post type listing screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4"
+msgid "Filter verbs list"
+msgstr ""
+
+#: src/post-types/functions.php:58
+msgctxt "Screen reader text for the pagination heading on the post type listing screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4"
+msgid "Verbs list navigation"
+msgstr ""
+
+#: src/post-types/functions.php:59
+msgctxt "Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4"
+msgid "Verbs list"
+msgstr ""
+
+#: src/post-types/functions.php:62
+msgctxt "Post type general name"
+msgid "Adverbs"
+msgstr ""
+
+#: src/post-types/functions.php:63
+msgctxt "Post type singular name"
+msgid "Adverb"
+msgstr ""
+
+#: src/post-types/functions.php:64
+msgctxt "Admin Menu text"
+msgid "Adverbs"
+msgstr ""
+
+#: src/post-types/functions.php:65
+msgctxt "Add New on Toolbar"
+msgid "Adverb"
+msgstr ""
+
+#: src/post-types/functions.php:67
+msgid "Add New Adverb"
+msgstr ""
+
+#: src/post-types/functions.php:68
+msgid "New Adverb"
+msgstr ""
+
+#: src/post-types/functions.php:69
+msgid "Edit Adverb"
+msgstr ""
+
+#: src/post-types/functions.php:70
+msgid "View Adverb"
+msgstr ""
+
+#: src/post-types/functions.php:71
+msgid "All Adverbs"
+msgstr ""
+
+#: src/post-types/functions.php:72
+msgid "Search Adverbs"
+msgstr ""
+
+#: src/post-types/functions.php:73
+msgid "No adverbs found."
+msgstr ""
+
+#: src/post-types/functions.php:74
+msgid "No adverbs found in Trash."
+msgstr ""
+
+#: src/post-types/functions.php:75
+msgctxt "Screen reader text for the filter links heading on the post type listing screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4"
+msgid "Filter adverbs list"
+msgstr ""
+
+#: src/post-types/functions.php:76
+msgctxt "Screen reader text for the pagination heading on the post type listing screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4"
+msgid "Adverbs list navigation"
+msgstr ""
+
+#: src/post-types/functions.php:77
+msgctxt "Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4"
+msgid "Adverbs list"
+msgstr ""
+
+#: src/rest-api/routes.php:21
+msgid "There are no words found."
+msgstr ""
+
+#: src/taxonomies/functions.php:11
+msgid "Russian"
+msgstr ""
+
+#: src/taxonomies/functions.php:12
+msgid "English"
+msgstr ""
+
+#: build/playground/render.js:1
+msgid "Loading..."
+msgstr ""
+
+#: build/playground/render.js:1
+msgid "Choose language to learn"
+msgstr ""
+
+#: build/playground/render.js:1
+msgid "10 Words"
+msgstr ""
+
+#: build/playground/render.js:1
+msgid "20 Words"
+msgstr ""
+
+#: build/playground/render.js:1
+msgid "30 Words"
+msgstr ""
+
+#: build/playground/render.js:1
+msgid "40 Words"
+msgstr ""
+
+#: build/playground/render.js:1
+msgid "50 Words"
+msgstr ""
+
+#: build/playground/render.js:1
+msgid "75 Words"
+msgstr ""
+
+#: build/playground/render.js:1
+msgid "100 Words"
+msgstr ""
+
+#: build/playground/render.js:1
+msgid "Freemode"
+msgstr ""
+
+#: build/playground/render.js:1
+msgid "Go"
+msgstr ""
+
+#: build/playground/render.js:1
+msgid "Your Result"
+msgstr ""

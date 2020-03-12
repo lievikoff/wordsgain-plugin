@@ -16,7 +16,6 @@ class Welcome extends Component {
 		super( props );
 
 		this.state = {
-			title: '',
 			content: '',
 			isLoading: true,
 		};
@@ -27,7 +26,6 @@ class Welcome extends Component {
 	setLanguages() {
 		apiFetch( { path: '/wordsgain/v1/playground/languages/' } ).then( languages => {
 			this.setState( {
-				title: __( 'Chose Language to Learn', 'wordsgain' ),
 				content: this.getLanguageSelect( languages ),
 				isLoading: false,
 			} );
@@ -40,13 +38,18 @@ class Welcome extends Component {
 
 	handleLanguageSelectChange( selectedOption ) {
 		this.setState( {
-			title: __( 'Chose Number of Words', 'wordsgain' ),
 			content: this.getNumberOfWords( selectedOption.value ),
 		} );
 	}
 
 	getLanguageSelect( languages ) {
-		return <Select onChange={ this.handleLanguageSelectChange } options={ languages } theme={ getSelectCustomTheme } styles={ getSelectCustomStyles } />;
+		return <Select
+			placeholder={__( 'Choose language to learn', 'wordsgain' ) }
+			onChange={ this.handleLanguageSelectChange }
+			options={ languages }
+			theme={ getSelectCustomTheme }
+			styles={ getSelectCustomStyles }
+		/>;
 	}
 
 	getNumberOfWords( language ) {
@@ -73,10 +76,6 @@ class Welcome extends Component {
 
 		return (
 			<div className="wordsgain-playground-welcome">
-				<h2 className={ getElementClassName( 'wordsgain-playground', 'title' ) }>
-					{ this.state.title }
-				</h2>
-
 				{ this.state.content }
 			</div>
 		);

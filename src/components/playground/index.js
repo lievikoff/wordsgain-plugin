@@ -6,7 +6,7 @@ import Learning from '../learning';
 import Testing from '../testing';
 import Result from '../result';
 import Loader from '../loader';
-import { shuffle, getFreeModeNumberOfWords } from '../../blocks/helpers';
+import { getFreeModeNumberOfWords } from '../../blocks/helpers';
 
 class Playground extends Component {
 	constructor( props ) {
@@ -29,14 +29,6 @@ class Playground extends Component {
 
 	componentDidMount() {
 		this.setWelcomeScreen();
-		// this.setData(
-		// 	{
-		// 		mode: 'predefined',
-		// 		numberOfWords: 3,
-		// 		language: 'ru_ru',
-		// 	},
-		// 	this.setTestingScreen
-		// );
 	}
 
 	handleWelcomeButtonClick( data ) {

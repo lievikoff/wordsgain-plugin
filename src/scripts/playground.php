@@ -9,12 +9,12 @@ function get_playground_script_handle() {
 	return 'wordsgain-playground-script';
 }
 
-function get_playground_frontend_script_handle() {
-	return 'wordsgain-playground-frontend-script';
+function get_playground_render_script_handle() {
+	return 'wordsgain-playground-render-script';
 }
 
 function render_playground_block() {
-	wp_enqueue_script( get_playground_frontend_script_handle() );
+	wp_enqueue_script( get_playground_render_script_handle() );
 
 	return '<div class="wordsgain-playground"></div>';
 }
@@ -25,7 +25,7 @@ function register_playground_script() {
 	}
 
 	$asset_file = include( get_plugin_path() . 'build/playground/index.asset.php');
-	$asset_frontend_file = include( get_plugin_path() . 'build/playground/frontend.asset.php');
+	$asset_render_file = include( get_plugin_path() . 'build/playground/render.asset.php');
 
 	wp_register_script(
 		get_playground_script_handle(),
@@ -42,10 +42,10 @@ function register_playground_script() {
 	);
 
 	wp_register_script(
-		get_playground_frontend_script_handle(),
-		get_plugin_url( 'build/playground/frontend.js' ),
-		$asset_frontend_file['dependencies'],
-		$asset_frontend_file['version']
+		get_playground_render_script_handle(),
+		get_plugin_url( 'build/playground/render.js' ),
+		$asset_render_file['dependencies'],
+		$asset_render_file['version']
 	);
 
 	register_block_type( 'wordsgain/playground', array(
@@ -55,7 +55,11 @@ function register_playground_script() {
 	) );
 
 	if ( function_exists( 'wp_set_script_translations' ) ) {
-		wp_set_script_translations( get_playground_script_handle(), 'wordsgain' );
+		wp_set_script_translations(
+			get_playground_render_script_handle(),
+			'wordsgain',
+			get_plugin_path() . 'languages'
+		);
 	}
 }
 add_action( 'init', __NAMESPACE__ . '\register_playground_script' );

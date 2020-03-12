@@ -2,7 +2,7 @@
 	"name": "wordsgain",
 	"version": "1.0.0",
 	"private": true,
-	"description": "Easy Way to Lern New Words",
+	"description": "Easy way to learn foreign words",
 	"author": "the WordsGain team",
 	"homepage": "http://wordsgain.com/",
 	"license": "GPL-3.0-or-later",
@@ -18,10 +18,12 @@
 	},
 	"scripts": {
 		"build:playground-style": "node-sass src/blocks/playground/style.scss build/playground/style.css --output-style expanded && postcss -r build/playground/style.css",
-		"build:playground-script": "wp-scripts build src/blocks/playground/index.js src/blocks/playground/frontend.js --output-path=build/playground/",
+		"build:playground-script": "wp-scripts build src/blocks/playground/index.js src/blocks/playground/render.js --output-path=build/playground/",
 		"start:playground-style": "chokidar \"src/**/*.scss\" -c \"npm run build:playground-style\" --initial",
-		"start:playground-script": "wp-scripts start src/blocks/playground/index.js src/blocks/playground/frontend.js --output-path=build/playground/",
+		"start:playground-script": "wp-scripts start src/blocks/playground/index.js src/blocks/playground/render.js --output-path=build/playground/",
 		"start:playground": "run-p \"start:playground-*\"",
-		"build:playground": "run-p \"build:playground-*\""
+		"build:playground": "run-p \"build:playground-*\"",
+		"i18n:pot": "wp i18n make-pot ./ languages/wordsgain.pot --exclude=src/**/*.js,build/**/index.js",
+		"i18n:json": "wp i18n make-json languages"
 	}
 }

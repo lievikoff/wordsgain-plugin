@@ -58,10 +58,6 @@ function prevent_word_duplicates( $post_id, $post ) {
 		$word_exists = word_exists( $post_id, $sanitized_title, $post->post_type );
 
 		if ( $word_exists ) {
-			// $taxonomy = 'ru-' . $post->post_type;
-			// $post_terms = wp_get_post_terms( $post_id, $taxonomy, array( 'fields' => 'names' ) );
-
-			// wp_set_post_terms( $word_exists, $post_terms, $taxonomy );
 			wp_delete_post( $post_id );
 
 			set_word_exists_notice();
