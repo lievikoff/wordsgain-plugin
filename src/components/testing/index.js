@@ -44,7 +44,8 @@ class Testing extends Component {
 	getResultData() {
 		return {
 			rightAnswersCount: this.state.rightAnswersCount,
-			passedWordsCount: this.state.passedWordsCount
+			passedWordsCount: this.state.passedWordsCount,
+			language: this.props.language,
 		};
 	}
 

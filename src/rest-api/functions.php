@@ -47,7 +47,7 @@ function get_playground_words( $number_of_words, $language ) {
 		$options_query = $wpdb->prepare(
 			"
 			SELECT DISTINCT ID post_id, post_title
-			FROM            wp_posts
+			FROM            {$wpdb->prefix}posts
 			WHERE           ID != %d
 							AND post_type = %s
 							AND post_status = 'publish'
@@ -61,7 +61,7 @@ function get_playground_words( $number_of_words, $language ) {
 
 		$data['options'][ $option_index ] = $wpdb->get_results( $options_query );
 
-		if ( ! $data['options'][ $option_index ] ) {
+		if ( count( $data['options'][ $option_index ] ) < 2 ) {
 			return;
 		}
 

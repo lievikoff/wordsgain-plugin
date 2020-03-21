@@ -21,6 +21,7 @@ function Result( props ) {
 					width="narrow"
 					color="blue"
 					singlePosition="center"
+					data={ { language: props.language } }
 				><Icon icon={ icons.reload } /></Button>
 			</div>
 		</div>

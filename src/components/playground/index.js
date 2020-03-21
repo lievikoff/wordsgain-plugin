@@ -16,6 +16,7 @@ class Playground extends Component {
 			isLoading: true,
 			screen: null,
 			mode: null,
+			language: null,
 			words: [],
 		};
 
@@ -37,9 +38,18 @@ class Playground extends Component {
 		this.setData( data, callback );
 	}
 
-	setWelcomeScreen() {
+	setWelcomeScreen( data ) {
+		const defaultData = {
+			language: null,
+		};
+
+		data = data || defaultData;
+
 		this.setState( {
-			screen: <Welcome handleButtonClick={ this.handleWelcomeButtonClick } />,
+			screen: <Welcome
+				data={ data }
+				handleButtonClick={ this.handleWelcomeButtonClick }
+			/>,
 			isLoading: false
 		} );
 	}
@@ -57,6 +67,7 @@ class Playground extends Component {
 					data: response.data,
 					numberOfWords: data.numberOfWords,
 					mode: data.mode,
+					language: data.language,
 					isLoading: false,
 				} );
 			}
@@ -85,6 +96,7 @@ class Playground extends Component {
 				handleResult={ this.setResultScreen }
 				handleReload={ this.reloadTestingScreen }
 				mode={ this.state.mode }
+				language={ this.state.language }
 				data={ this.state.data }
 			/>
 		} );
@@ -96,6 +108,7 @@ class Playground extends Component {
 				handleReload={ this.setWelcomeScreen }
 				rightAnswersCount={ data.rightAnswersCount }
 				passedWordsCount={ data.passedWordsCount }
+				language={ data.language }
 			/>
 		} );
 	}

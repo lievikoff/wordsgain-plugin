@@ -23,7 +23,7 @@ class Welcome extends Component {
 		this.handleLanguageSelectChange = this.handleLanguageSelectChange.bind( this );
 	}
 
-	setLanguages() {
+	setLanguagesScreen() {
 		apiFetch( { path: '/wordsgain/v1/playground/languages/' } ).then( languages => {
 			this.setState( {
 				content: this.getLanguageSelect( languages ),
@@ -32,14 +32,23 @@ class Welcome extends Component {
 		} );
 	}
 
+	setNumberOfWordsScreen( language ) {
+		this.setState( {
+			content: this.getNumberOfWords( language ),
+			isLoading: false,
+		} );
+	}
+
 	componentDidMount() {
-		this.setLanguages();
+		if ( ! this.props.data.language ) {
+			return this.setLanguagesScreen();
+		}
+
+		this.setNumberOfWordsScreen( this.props.data.language );
 	}
 
 	handleLanguageSelectChange( selectedOption ) {
-		this.setState( {
-			content: this.getNumberOfWords( selectedOption.value ),
-		} );
+		this.setNumberOfWordsScreen( selectedOption.value );
 	}
 
 	getLanguageSelect( languages ) {
@@ -55,7 +64,7 @@ class Welcome extends Component {
 	getNumberOfWords( language ) {
 		return [
 			<div className={ getElementClassName( 'wordsgain-playground', 'buttons' ) }>
-				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 10, language: language } } color="blue" width='half'>{ __( '10 Words', 'wordsgain' ) }</Button>
+				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 2, language: language } } color="blue" width='half'>{ __( '10 Words', 'wordsgain' ) }</Button>
 				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 20, language: language } } color="blue" width='half'>{ __( '20 Words', 'wordsgain' ) }</Button>
 				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 30, language: language } } color="blue" width='half'>{ __( '30 Words', 'wordsgain' ) }</Button>
 				<Button handleButtonClick={ this.props.handleButtonClick } data={ { mode: 'predefined', numberOfWords: 40, language: language } } color="blue" width='half'>{ __( '40 Words', 'wordsgain' ) }</Button>
