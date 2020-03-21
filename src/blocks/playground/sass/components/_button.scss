@@ -1,7 +1,5 @@
 body button.wordsgain-playground {
 	&__button {
-		display: flex;
-		justify-content: center;
 		margin: .4em 0;
 		color: $color-white;
 		transition: background-color .4s ease-in;
@@ -42,16 +40,33 @@ body button.wordsgain-playground {
 		}
 
 		// Widths.
+		&--minimal {
+			width: 12%;
+		}
+
 		&--narrow {
-			width: 24.5%;
+			width: 24%;
 		}
 
 		&--half {
-			width: 49.5%;
+			width: 49%;
 		}
 
 		&--wide {
 			width: 100%;
+		}
+
+		&--right {
+			&:only-child {
+				margin-left: auto;
+			}
+		}
+
+		&--center {
+			&:only-child {
+				margin-left: auto;
+				margin-right: auto;
+			}
 		}
 
 		@media only screen and (min-width: 1200px) {

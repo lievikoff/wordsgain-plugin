@@ -23,6 +23,16 @@ function checkWidth( width ) {
 	return widthList.indexOf( width ) > -1;
 }
 
+function checkSinglePosition( width ) {
+	const widthList = [
+		'left',
+		'center',
+		'right',
+	];
+
+	return widthList.indexOf( width ) > -1;
+}
+
 function Button( props ) {
 	const classNameList = [ getElementClassName( 'wordsgain-playground', 'button' ) ];
 
@@ -32,6 +42,10 @@ function Button( props ) {
 
 	if ( props.width && checkWidth( props.width ) ) {
 		classNameList.push( getModifierClassName( classNameList[0], props.width ) );
+	}
+
+	if ( props.singlePosition && checkSinglePosition( props.singlePosition ) ) {
+		classNameList.push( getModifierClassName( classNameList[0], props.singlePosition ) );
 	}
 
 	function handleClick() {

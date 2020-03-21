@@ -7,69 +7,73 @@ use function WordsGain\Taxonomies\get_translation_languages;
 
 defined( 'ABSPATH' ) || exit;
 
-function get_playground_words( $number_of_posts, $language, $limit = 4 ) {
+function get_playground_words( $number_of_words, $language ) {
 	global $wpdb;
 
-	$parts_of_speech = get_parts_of_speech( 'keys' );
-	shuffle( $parts_of_speech );
+	$taxonomy_like = $wpdb->esc_like( $language . '-' ) . '%';
 
-	$parts_of_speech_count      = count( $parts_of_speech );
-	$parts_of_speech_rand       = array();
-	$words_added_count          = 0;
+	$words_query = $wpdb->prepare(
+		"
+		SELECT          p.ID post_id, p.post_title, p.post_type, t.term_id, t.name term_name
+		FROM            {$wpdb->prefix}term_taxonomy tt
+		INNER JOIN      {$wpdb->prefix}term_relationships tr
+						ON tr.term_taxonomy_id = tt.term_taxonomy_id
+		INNER JOIN      {$wpdb->prefix}posts p
+						ON p.ID = tr.object_id
+						AND p.post_status = 'publish'
+		INNER JOIN      {$wpdb->prefix}terms t
+						ON t.term_id = tt.term_id
+		WHERE           tt.taxonomy LIKE %s
+						AND tt.count > 0
+		ORDER BY        RAND()
+		LIMIT           %d
+		",
+		$taxonomy_like,
+		$number_of_words
+	);
 
-	for ( $i = 0; $i < $parts_of_speech_count; $i++ ) {
-		if ( $number_of_posts <= $words_added_count ) {
-			break;
-		}
+	$data = array(
+		'words' => $wpdb->get_results( $words_query ),
+	);
 
-		$difference = $number_of_posts - $words_added_count;
-
-		if ( $i === $parts_of_speech_count - 1 ) {
-			$rand_count = $difference;
-		} else {
-			$rand_count         = rand( 1, $difference );
-			$words_added_count += $rand_count;
-		}
-
-		$parts_of_speech_rand[ $parts_of_speech[ $i ] ] = $rand_count;
+	if ( ! $data['words'] ) {
+		return;
 	}
 
-	$words = array();
+	$option_index = 0;
+	$number_of_options = 3;
 
-	foreach ( $parts_of_speech_rand as $part_of_speech_rand_key => $part_of_speech_rand_count ) {
-		$query = $wpdb->prepare(
+	foreach ( $data['words'] as $word ) {
+		$options_query = $wpdb->prepare(
 			"
-			SELECT          p.ID post_id, p.post_title, p.post_type, t.term_id, t.name term_name
-			FROM            {$wpdb->prefix}term_taxonomy tt
-			INNER JOIN      {$wpdb->prefix}term_relationships tr
-							ON tr.term_taxonomy_id = tt.term_taxonomy_id
-			INNER JOIN      {$wpdb->prefix}posts p
-			                ON p.ID = tr.object_id
-			INNER JOIN      {$wpdb->prefix}terms t
-			                ON t.term_id = tt.term_id
-			WHERE           tt.taxonomy = %s
-			                AND tt.count > 0
+			SELECT DISTINCT ID post_id, post_title
+			FROM            wp_posts
+			WHERE           ID != %d
+							AND post_type = %s
+							AND post_status = 'publish'
 			ORDER BY        RAND()
 			LIMIT           %d
 			",
-			$language . '-' . $part_of_speech_rand_key,
-			$part_of_speech_rand_count * 4
+			$word->post_id,
+			$word->post_type,
+			$number_of_options
 		);
 
-		$words = array_merge( $wpdb->get_results( $query ), $words );
-	}
+		$data['options'][ $option_index ] = $wpdb->get_results( $options_query );
 
-	$chunks = array_chunk( $words, 4 );
-	$data   = array();
+		if ( ! $data['options'][ $option_index ] ) {
+			return;
+		}
 
-	foreach ( $chunks as $chunk ) {
-		$data[] = array(
-			'selected' => array_rand( $chunk ),
-			'words'    => $chunk,
+		$data['options'][ $option_index ][] = array(
+			'post_id'    => $word->post_id,
+			'post_title' => $word->post_title,
 		);
-	}
 
-	shuffle( $data );
+		shuffle( $data['options'][ $option_index ] );
+
+		$option_index += 1;
+	}
 
 	return $data;
 }

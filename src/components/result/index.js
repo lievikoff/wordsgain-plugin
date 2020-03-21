@@ -15,11 +15,12 @@ function Result( props ) {
 			<hr />
 			<h3 className={ getElementClassName( 'wordsgain-playground', 'title' ) }> { props.rightAnswersCount } / { props.passedWordsCount }</h3>
 
-			<div className={ getElementClassName( 'wordsgain-playground', 'buttons' ) }>
+			<div className={ getElementClassName( 'wordsgain-playground', 'control-buttons' ) }>
 				<Button
 					handleButtonClick={ props.handleReload }
 					width="narrow"
 					color="blue"
+					singlePosition="center"
 				><Icon icon={ icons.reload } /></Button>
 			</div>
 		</div>

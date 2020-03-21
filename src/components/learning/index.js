@@ -9,30 +9,39 @@ class Learning extends Component {
 
 		this.state = {
 			currentStep: 1,
+			isStepButtonClicked: false,
 		};
 
-		this.handleButtonClick = this.handleButtonClick.bind( this );
+		this.handleStepButtonClick = this.handleStepButtonClick.bind( this );
 	}
 
 	getBlockClassName() {
 		return 'wordsgain-playground-learning';
 	}
 
-	handleButtonClick( data ) {
+	handleStepButtonClick( data ) {
+		var newData = {};
+
+		if ( ! this.state.isStepButtonClicked ) {
+			newData.isStepButtonClicked = true;
+		}
+
 		switch ( data.action ) {
 			case 'prev' :
-				return this.setState( { currentStep: this.state.currentStep - 1 } );
+				newData.currentStep = this.state.currentStep - 1;
+
+				return this.setState( newData );
 			case 'next' :
-				return this.setState( { currentStep: this.state.currentStep + 1 } );
+				newData.currentStep = this.state.currentStep + 1;
+
+				return this.setState( newData );
 			case 'begin' :
 				return this.props.begin();
 		}
 	}
 
 	render() {
-		console.log(this.props.data)
-		const currentData = this.props.data[ this.state.currentStep - 1 ];
-		const currentWord = currentData.words[ currentData.selected ];
+		const currentWord = this.props.data.words[ this.state.currentStep - 1 ];
 
 		return (
 			<div className={ this.getBlockClassName() }>
@@ -48,9 +57,10 @@ class Learning extends Component {
 				</h3>
 
 				<LearningNavigation
-					handleButtonClick={ this.handleButtonClick }
+					handleButtonClick={ this.handleStepButtonClick }
+					showBeginButton={ this.state.isStepButtonClicked }
 					currentStep={ this.state.currentStep }
-					numberOfSteps={ this.props.data.length }
+					numberOfSteps={ this.props.data.words.length }
 				/>
 			</div>
 		);

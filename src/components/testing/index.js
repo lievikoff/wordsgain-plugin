@@ -1,6 +1,6 @@
 import { Component } from '@wordpress/element';
 import { Icon } from '@wordpress/components';
-import { getElementClassName } from '../../blocks/helpers';
+import { getElementClassName, capitalizeFirstLetter } from '../../blocks/helpers';
 import Button from '../button';
 import icons from '../../blocks/icons';
 
@@ -26,17 +26,17 @@ class Testing extends Component {
 	}
 
 	getControlButtons() {
-		return <div className={ getElementClassName( this.getBlockClassName(), 'control-buttons' ) }>
+		return <div className={ getElementClassName( 'wordsgain-playground', 'control-buttons' ) }>
 			<Button
 					handleButtonClick={ this.handleCloseButtonClick }
-					width="narrow"
 					color="dark-gray"
-				><Icon icon={ icons.close } /></Button>
+					width="minimal"
+				><Icon size="24" icon={ icons.close } /></Button>
 
 			<Button
 				handleButtonClick={ this.handleContinueButtonClick }
 				color="blue"
-				width="narrow"
+				width="minimal"
 			><Icon size="24" icon={ icons.arrows.right } /></Button>
 		</div>;
 	}
@@ -49,7 +49,7 @@ class Testing extends Component {
 	}
 
 	isLastWord() {
-		return this.state.currentWordIndex === this.props.data.length - 1;
+		return this.state.currentWordIndex === this.props.data.words.length - 1;
 	}
 
 	finish() {
@@ -66,14 +66,13 @@ class Testing extends Component {
 	}
 
 	handleAnswerClick( data ) {
-		const state = {};
-		const currentData  = this.props.data[ this.state.currentWordIndex ];
-		const selectedWord = currentData.words[ currentData.selected ];
+		const state       = {};
+		const currentWord = this.props.data.words[ this.state.currentWordIndex ];
 
 		state.passedWordsCount = this.state.passedWordsCount + 1;
 		state.chosenWordId = data.post_id;
 
-		if ( selectedWord.post_id === data.post_id ) {
+		if ( currentWord.post_id === data.post_id ) {
 			state.rightAnswersCount = this.state.rightAnswersCount + 1;
 
 			if ( this.isLastWord() ) {
@@ -108,22 +107,21 @@ class Testing extends Component {
 	}
 
 	render() {
-		const currentData  = this.props.data[ this.state.currentWordIndex ];
-		const selectedWord = currentData.words[ currentData.selected ];
+		const currentWord    = this.props.data.words[ this.state.currentWordIndex ];
+		const currentOptions = this.props.data.options[ this.state.currentWordIndex ];
 
-		console.log(currentData)
 		return (
 			<div className={ this.getBlockClassName() }>
 				<div className={ getElementClassName( 'wordsgain-playground', 'label' ) }>
-					<span>{ selectedWord.post_type }</span>
+					<span>{ currentWord.post_type }</span>
 				</div>
 
 				<h2 className={ getElementClassName( 'wordsgain-playground', 'title' ) }>
-					{ selectedWord.term_name }
+					{ capitalizeFirstLetter( currentWord.term_name ) }
 				</h2>
 
 				<div className={ getElementClassName( this.getBlockClassName(), 'answers' ) }>
-					{ currentData.words.map( word => {
+					{ currentOptions.map( option => {
 						let color = 'blue';
 						let handleClickFunction = this.handleAnswerClick;
 						let isDisabled = false;
@@ -132,10 +130,10 @@ class Testing extends Component {
 							handleClickFunction = () => {};
 							isDisabled = true;
 
-							if ( word.post_id !== selectedWord.post_id ) {
+							if ( currentWord.post_id !== option.post_id ) {
 								color = 'gray';
 
-								if ( word.post_id === this.state.chosenWordId ) {
+								if ( option.post_id === this.state.chosenWordId ) {
 									color = 'red';
 								}
 							} else {
@@ -144,14 +142,14 @@ class Testing extends Component {
 						}
 
 						return <Button
-							key={ word.post_id }
+							key={ option.post_id }
 							handleButtonClick={ handleClickFunction }
-							data={ { post_id: word.post_id } }
+							data={ { post_id: option.post_id } }
 							color={ color }
 							width="wide"
 							isDisabled={ isDisabled }
 						>
-							{ word.post_title }
+							{ option.post_title }
 						</Button>
 					} ) }
 				</div>
